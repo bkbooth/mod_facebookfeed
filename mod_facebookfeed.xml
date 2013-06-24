@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="1.7" client="site">
     <name>Facebook Feed</name>
-    <author>e-motion design</author>
+    <author>Benjamin Booth</author>
     <version>1.0.0</version>
     <creationDate>March 2012</creationDate>
     <copyright>Copyright (C) 2012. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <authorEmail>dev@e-motion.com.au</authorEmail>
-    <authorUrl>www.e-motion.com.au</authorUrl>
+    <authorEmail>bkbooth@gmail.com</authorEmail>
+    <authorUrl>bkbooth.com.au</authorUrl>
     <description>A simple module to show a Facebook Page feed</description>
     <files>
         <filename module="mod_facebookfeed">mod_facebookfeed.php</filename>

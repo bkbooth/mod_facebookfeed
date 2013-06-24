@@ -1,9 +1,7 @@
 <?php
 /*
  * Facebook Feed module - layout
- * © 2012 e-motion design
- * dev@e-motion.com.au
- * www.e-motion.com.au
+ * (c) 2012 Benjamin Booth
  */
 
 // No direct access.
