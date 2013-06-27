@@ -1,32 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="1.7" client="site">
-    <name>Facebook Feed</name>
+<extension
+	type="module"
+	version="1.7"
+	client="site">
+	
+    <name>mod_facebookfeed</name>
     <author>Benjamin Booth</author>
-    <version>1.0.0</version>
     <creationDate>March 2012</creationDate>
     <copyright>Copyright (C) 2012. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <authorEmail>bkbooth@gmail.com</authorEmail>
     <authorUrl>bkbooth.com.au</authorUrl>
-    <description>A simple module to show a Facebook Page feed</description>
+    <version>1.0.0</version>
+    <description>MOD_FACEBOOKFEED_XML_DESCRIPTION</description>
     <files>
         <filename module="mod_facebookfeed">mod_facebookfeed.php</filename>
+        <folder>tmpl</folder>
+        <filename>helper.php</filename>
         <filename>mod_facebookfeed.xml</filename>
         <filename>index.html</filename>
-        <filename>helper.php</filename>
-        <filename>tmpl/default.php</filename>
-        <filename>tmpl/index.html</filename>
     </files>
+    <languages>
+		<language tag="en-GB">en-GB.mod_facebookfeed.ini</language>
+		<language tag="en-GB">en-GB.mod_facebookfeed.sys.ini</language>
+	</languages>
     <config>
     	<fields name="params">
     		<fieldset name="basic">
-    			<field name="fb_profile_id" type="text" default="" label="Facebook Profile" description="Provide the numeric ID or the username of the Facebook Page that you want to load the feed from." />
-    			<field name="fb_app_id" type="text" default="" label="Facebook App ID" description="Provide the App ID of a Facebook app. Use a Page welcome tab app or similar" />
-    			<field name="fb_app_secret" type="text" default="" label="Facebook App Secret" description="Provide the App Secret of a Facebook app. Use a Page welcome tab app or similar" />
-    			<field name="feed_limit" type="text" default="10" label="Feed Limit" description="How many posts do you want to show from the feed?" />
+    			<field
+    				name="fb_profile_id"
+    				type="text"
+    				default=""
+    				label="MOD_FACEBOOKFEED_PROFILE_LBL"
+    				description="MOD_FACEBOOKFEED_PROFILE_DESC" />
+    				
+    			<field
+    				name="fb_app_id"
+    				type="text"
+    				default=""
+    				label="MOD_FACEBOOKFEED_APP_ID_LBL"
+    				description="MOD_FACEBOOKFEED_APP_ID_DESC" />
+    				
+    			<field
+    				name="fb_app_secret"
+    				type="text"
+    				default=""
+    				label="MOD_FACEBOOKFEED_APP_SECRET_LBL"
+    				description="MOD_FACEBOOKFEED_APP_SECRET_DESC" />
+    				
+    			<field
+    				name="feed_limit"
+    				type="text"
+    				default="10"
+    				label="MOD_FACEBOOKFEED_LIMIT_LBL"
+    				description="MOD_FACEBOOKFEED_LIMIT_DESC" />
     		</fieldset>
     		<fieldset name="advanced">
-    			<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Suffix for individual css styling" />
+    			<field
+    				name="moduleclass_sfx"
+    				type="text"
+    				default=""
+    				label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+    				description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
     		</fieldset>
     	</fields>
     </config>

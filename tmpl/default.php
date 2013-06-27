@@ -1,40 +1,41 @@
 <?php
 /*
  * Facebook Feed module - layout
- * (c) 2012 Benjamin Booth
+ * (C) 2012 e-motion design
  */
 
 // No direct access.
 defined('_JEXEC') or die;
 
+// include the auto linker
+require_once JPATH_BASE.DS.'modules'.DS.'mod_facebookfeed'.DS.'incl'.DS.'linkify_urls.php';
+
 ?>
 
 <div class="fbfeed<?php echo $class_sfx;?>">
-	<div style="overflow: auto;">
-		<a href="<?=$profile->link?>" target=_blank"><img src="https://graph.facebook.com/<?=$profile_id?>/picture" border="0" style="float: left; margin: 0 10px 10px 0;" /></a>
-		<p style="margin: 0 0 0.5em;"><a href="<?=$profile->link?>" target=_blank"><?=$profile->name?></a></p>
-		<div class="fb-like" data-href="https://www.facebook.com/AngusMarksAustralia" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
-	</div>
-	<ul>
+	<ul class="fb_feed">
 	<?php foreach($feed->data as $item) : ?>
-	<li>
-		<?php echo "<small>".date("F j \a\\t g:ia", strtotime($item->created_time))."</small><br />"; ?>
-		<?php if (isset($item->message)) {
-				echo $item->message;
-				if ($item->type == "photo" || $item->type == "link") echo "<br />";
-			} ?>
-	    <?php switch ($item->type) {
-				case "photo":
-					echo "<a href='".$item->link."' target='_blank'><img src='".$item->picture."' border='0' /></a>";
-					break;
-				case "link":
-					echo ($item->picture != "") ? "<a href='".$item->link."' target='_blank'><img src='".$item->picture."' border='0' /></a><br />" : "";
-					echo "<strong><a href='".$item->link."' target='_blank'>".$item->name."</a></strong><br />";
-					echo "<small><a href='http://".$item->caption."' target='_blank'>".$item->caption."</a></small><br />";
-					echo "<em>".$item->description."</em>";
-					break;
-				default:
-			} ?>
+	<li class="fb_item">
+		<?php if ($item->type == "photo") : ?>
+			<div class="fb_image"><a href='<?php echo $item->link; ?>' target='_blank'><img src='<?php echo $item->picture; ?>' border='0' /></a></div>
+		<?php endif; ?>
+		<?php
+			if (isset($item->message)) {
+				// auto link URLs
+				$item->message = auto_link_text($item->message);
+				echo "<div class='fb_post'>".trim($item->message)."</div>";
+			}
+			if ($item->type == "link") {
+				echo "<div class='fb_link'><a href='".$item->link."' target='_blank'>".$item->name."</a></div>";
+			}
+			if ($item->type == "video") {
+				echo "<div class='fb_video'><iframe width='247' src='".str_replace('&autoplay=1', '', $item->source)."' frameborder='0' autoplay='0' allowfullscreen></iframe></div>";
+			}
+		?>
+		<div class="fb_info"><a href="<?php echo "https://www.facebook.com/".($item->status_type == "added_photos" ? $item->object_id : $item->id); ?>" target="_blank">
+			<div class="fb_stats"><i class="icon icon_fb_likes"></i> <?php echo $item->likes ? $item->likes->count : '0' ; ?> <i class="icon icon_fb_comments"></i> <?php echo $item->comments ? $item->comments->count : '0'; ?>&nbsp;-&nbsp;</div>
+			<div class="fb_date"><?php echo date("F j \a\\t g:ia", strtotime($item->created_time)); ?></div>
+		</a></div>
 	</li>
 	<?php endforeach; ?>
 	</ul>

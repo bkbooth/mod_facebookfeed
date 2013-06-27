@@ -1,7 +1,7 @@
 <?php
 /*
  * Facebook Feed module
- * (c) 2012 Benjamin Booth
+ * (C) 2012 Benjamin Booth
  */
 
 // no direct access
@@ -16,6 +16,6 @@ $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 $profile = modFacebookfeedHelper::getProfile($params);
 $feed = modFacebookfeedHelper::getFeed($params);
 
-require(JModuleHelper::getLayoutPath('mod_facebookfeed'));
+require JModuleHelper::getLayoutPath('mod_facebookfeed', $params->get('layout', 'default'));
 
 ?>
